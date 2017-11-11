@@ -1,0 +1,16 @@
+{% extends "layout/layout.html" %} {% block script %}
+<script>
+    $('.nav1').toggleClass('active');
+</script> {% endblock %} {% block content %}
+
+<!-- <div class="center">
+    <video src="/static/img/test4.mp4" width=100% controls="controls">
+        您的浏览器不支持 video 标签。
+    </video>
+</div> -->
+<div class="container outer-around">
+    {% for col in cols %} {% include 'layout/projects.html' %} {% endfor %}
+</div>
+
+
+{% endblock %}

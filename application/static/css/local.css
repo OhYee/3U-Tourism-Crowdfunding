@@ -1,0 +1,58 @@
+main{
+    min-height: 350px;
+}
+#main-card{
+    min-height: 300px;
+    margin: 50px;
+    padding: 50px;
+}
+body{
+    background: #eee;
+}
+.card{
+    background: #fff;
+}
+.outer-around{
+    padding: 30px;
+}
+.inner-around{
+    margin: 30px;
+}
+
+.bold{
+    font-weight: bold;
+}
+nav ul a {
+    font-family: "幼圆";
+    font-weight: bold;
+    font-size: large ;
+}
+
+.uuu {
+    background-color: #066008 !important;
+  }
+  
+.uuu-text {
+    color: #066008 !important;
+  }
+
+nav ul li.active{
+    background-color: transparent;
+}
+.active a{
+    color: #066008 !important;
+}
+
+.login-button{
+    font-size: small;
+}
+
+
+footer a{
+    padding: 10px;
+    color: black;
+}
+footer a:hover{
+    padding: 10px;
+    color: #066008 !important;
+}

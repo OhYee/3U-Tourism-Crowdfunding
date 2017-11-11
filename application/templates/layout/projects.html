@@ -1,0 +1,9 @@
+<div class="projects">
+    <span class="uuu-text bold" style="font-size:20px">{{ col['title'] }}</span>
+    <a href="{{ col['url'] }}" class="right">查看更多</a>
+    <hr class="uuu">
+    <div class="row">
+        {% for project in col['projects'] %} {% include 'layout/project-card.html' %} {% endfor %}
+
+    </div>
+</div>

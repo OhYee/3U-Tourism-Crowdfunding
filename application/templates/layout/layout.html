@@ -1,0 +1,20 @@
+<!doctype html>
+<html>
+
+    <head>
+        <title>3U旅游众筹</title>
+        {% include './layout/head.html' %}
+
+    </head>
+
+    <body>
+
+        {% include './layout/header.html' %}
+
+        <main>
+            {% block content %} {% endblock %}
+        </main>
+        {% include './layout/footer.html' %} {% block script %}{% endblock %}
+    </body>
+
+</html>

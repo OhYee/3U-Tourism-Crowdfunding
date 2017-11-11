@@ -1,0 +1,92 @@
+{% extends "layout/layout.html" %} {% block content %}
+
+<div class="container outer-around">
+    <div class="card hoverable">
+        <div class="container outer-around">
+            <from>
+                <div class="row">
+                    <div class="input-field col s12">
+                        <input value="" id="title" type="text" class="validate">
+                        <label for="title">标题</label>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="input-field col s12">
+                        <textarea id="abstract" class="materialize-textarea" length="90"></textarea>
+                        <label for="abstract">项目自述</label>
+                        <span class="hint">项目自述要求在90字以内</span>
+                    </div>
+                </div>
+
+
+                <div class="row">
+                    <div class="input-field col s12">
+                        <textarea id="content" class="materialize-textarea"></textarea>
+                        <label for="content">项目内容</label>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="input-field col s12">
+                        <textarea id="why" class="materialize-textarea"></textarea>
+                        <label for="why">为何众筹</label>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="input-field col s12">
+                        <input value="" id="timeline" type="text" class="validate">
+                        <label for="timeline">时间轴</label>
+                        <span class="hint">时间轴使用 "," 分割</span>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="input-field col s12">
+                        <input value="" id="time" type="text" class="validate">
+                        <label for="time">结束时间(天)</label>
+                        <span class="hint">众筹项目将在审核通过后的指定天数后自动停止</span>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="input-field col s12">
+                        <input value="117.189606,31.774346" id="map" type="text" class="validate">
+                        <label for="map">区位图</label>
+                        {% include 'addon/map-set.html' %}
+                    </div>
+                </div>
+
+
+                <div class="chips chips-placeholder"></div>
+
+            </from>
+        </div>
+    </div>
+</div>
+
+
+{% endblock %} {% block script %}
+<script>
+    $('.nav3').toggleClass('active');
+
+    $(document).ready(function () {
+        $('textarea#abstract').characterCounter();
+    });
+
+    $('.chips-placeholder').material_chip({
+        placeholder: '输入团队成员id',
+        secondaryPlaceholder: '+uid',
+    });
+    map.addEventListener("moveend", function () {
+        pos = map.getCenter()
+        $('input#map').val(pos.lng + "," + pos.lat);
+    });
+    $("input#map").bind("change", function (value) {
+        pos = $('input#map').val();
+        ans = pos.split(",");
+
+        map.centerAndZoom(new BMap.Point(ans[0], ans[1]), 15);
+    }); 
+</script> {% endblock %}

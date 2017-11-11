@@ -7,6 +7,10 @@ import application.projects
 def index():
     return render_template("index.html",cols=application.projects.get_test())
 
+@app.route('/add_project/')
+def add_project():
+    return render_template("add_project.html")
+
 @app.route('/test')
 def test():
     return render_template("addon/map-set.html")

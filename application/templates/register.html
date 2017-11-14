@@ -1,0 +1,52 @@
+{% extends "layout/layout.html" %} {% block title %} 注册 {% endblock %}{% block content %}
+<div class="container outer-around">
+    <div class="card-panel hoverable">
+        <div class="row">
+            <div class="col l8 offset-l2 s12">
+                <form action="/register/" method="post">
+                    <div class="input-field">
+                        <i class="material-icons prefix">account_circle</i>
+                        <input id="username" name="username" type="text" class="validate">
+                        <label for="username">用户名</label>
+                    </div>
+
+                    <div class="input-field">
+                        <i class="material-icons prefix">lock</i>
+                        <input id="password" name="password" type="password" class="validate">
+                        <label for="password">密码</label>
+                    </div>
+
+                    <span class="grey-text">注册视为同意
+                        <a class="uuu-text" href="javascript:open();">《3u用户协议》</a>
+                    </span>
+
+
+                    <button class="btn waves-effect waves-light right" type="submit" name="action">注册
+                        <i class="material-icons right">send</i>
+                    </button>
+                </form>
+                {{ message | safe }}
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Modal Structure -->
+<div id="modal1" class="modal">
+    <div class="modal-content">
+        <h4 class="uuu-text">3U项目用户协议</h4>
+        <p>一堆文本</p>
+    </div>
+</div>
+
+{% endblock %} {% block script %}
+<script>
+    $(document).ready(function () {
+        // the "href" attribute of .modal-trigger must specify the modal ID that wants to be triggered
+        $('.modal').modal();
+    });
+
+    function open() {
+        $('#modal1').modal('open');
+    }
+</script> {% endblock %}

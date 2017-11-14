@@ -1,0 +1,93 @@
+{% extends "layout/layout.html" %} {% block content %}
+
+<div class="row container">
+    <div class="col l8 m12">
+        <div class="card hoverable">
+            <div class="card-content">
+                <span class="card-title activator uuu-text bold truncate">
+                    标题
+                </span>
+
+                <div class="card-panel teal">
+                    <span class="white-text">我是一个很简单的卡片。我很擅长于包含少量的信息。我很方便，因为我只需要一个小标记就可以有效地使用。在其他框架中我叫做面板。
+                    </span>
+                </div>
+
+                <img class="responsive-img materialboxed" src="/static/img/test.jpg" data-caption="标题">
+
+                <br>
+
+                <span class="content">
+                    内容内容
+                    <br> 内容内容
+                    <br>
+                </span>
+            </div>
+
+        </div>
+        <div class="card-panel hoverable">
+            <strong class="uuu-text bold">区位图</strong>
+            {% include 'addon/map-show.html' %}
+        </div>
+        <div class="card-panel hoverable">
+            <strong class="uuu-text bold">我的回报</strong>
+
+        </div>
+        <div class="card-panel hoverable">
+            <strong class="uuu-text bold">时间轴</strong>
+            <table class="centered">
+                <tr>
+                    <td>2017-1-11</td>
+                    <td>行为1</td>
+                </tr>
+                <tr>
+                    <td>2017-1-12</td>
+                    <td>行为2</td>
+                </tr>
+            </table>
+        </div>
+    </div>
+    <div class="col l4 m12">
+        <div class="card-panel hoverable uuu white-text">
+            <b>已筹款</b>
+            <h1 class="bold">￥10000</h1>
+            <div class="progress green lighten-3">
+                <div class="determinate green darken-2" style="width: 70%"></div>
+            </div>
+        </div>
+
+        <div class="card-panel hoverable">
+            任意金额打赏
+            <form>
+
+            </form>
+        </div>
+
+        <div class="card-panel hoverable">
+            <p>支持
+                <b>123</b>元</p>
+            <p>获得1231231231</p>
+            <button class="waves-effect waves-light btn">
+                <i class="material-icons right">thumb_up</i>支持100元</button>
+        </div>
+
+        <div class="card-panel hoverable">
+            <div class="row">
+                <b>团队成员</b>
+            </div>
+
+            <div class="row">123</div>
+            <div class="row">123</div>
+            <div class="row">123</div>
+            <div class="row">123</div>
+        </div>
+    </div>
+</div>
+
+{% endblock %} {% block script %}
+<script>
+    $('.nav2').toggleClass('active');
+    $(document).ready(function () {
+        $('.materialboxed').materialbox();
+    });
+</script> {% endblock %}

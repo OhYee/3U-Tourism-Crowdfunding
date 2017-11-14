@@ -13,7 +13,7 @@
                     <li class="nav1">
                         <a class="black-text" href="/">首页</a>
                     </li>
-                    <li class="nav1">
+                    <li class="nav2">
                         <a class="black-text" href="/projects.html">更多项目</a>
                     </li>
                     <li class="nav3">
@@ -36,17 +36,27 @@
                 </ul>
             </div>
 
-            <div class="right">
-                <ul class="login-button">
-                    <li>
-                        <a class="uuu-text" href="/">注册</a>
-                    </li>
-                    <li>
-                        <a class="uuu-text" href="/">登录</a>
-                    </li>
-                </ul>
+            <div class="right" style="padding-right:10px">
+                {% if session['username'] %}
+
+                <div class="row">
+                    <div class="col s4 valign-wrapper">
+                        <a href="#">
+                            <img class="valign circle" height="42px" src="/static/img/qq.png ">
+                        </a>
+                    </div>
+
+                    <div class="col s8 ">
+                        <a href="# " class="black-text ">{{ session['username'] }}</a>
+                        <a href="/logout/ " class="blue-text ">退出登陆
+                        </a>
+                    </div>
+                    {% else %}
+                    <a class="uuu-text " href="/register ">注册</a>
+                    <a class="uuu-text " href="/login ">登录</a>
+                    {% endif %}
+                </div>
             </div>
-        </div>
 
 
     </nav>

@@ -36,7 +36,7 @@
 
                 <div class="row">
                     <div class="input-field col s12">
-                        <input value="" id="timeline" type="text" class="validate">
+                        <input value="2017-1-1,开始项目,2017-1-2,结束项目" id="timeline" type="text" class="validate">
                         <label for="timeline">时间轴</label>
                         <span class="hint">时间轴使用 "," 分割</span>
                     </div>
@@ -44,7 +44,7 @@
 
                 <div class="row">
                     <div class="input-field col s12">
-                        <input value="" id="time" type="text" class="validate">
+                        <input value="90" id="time" type="text" class="validate">
                         <label for="time">结束时间(天)</label>
                         <span class="hint">众筹项目将在审核通过后的指定天数后自动停止</span>
                     </div>
@@ -62,6 +62,29 @@
                 <div class="chips chips-placeholder"></div>
 
             </from>
+
+            <!-- Modal Trigger -->
+            <p>
+                <input type="checkbox" id="agree" />
+                <label for="agree">我同意
+                    <a class="uuu-text" href="javascript:open();">《3U项目用户协议》</a>
+                </label>
+            </p>
+
+
+
+
+
+            <!-- Modal Structure -->
+            <div id="modal1" class="modal">
+                <div class="modal-content">
+                    <h4 class="uuu-text">3U项目用户协议</h4>
+                    <p>一堆文本</p>
+                </div>
+            </div>
+
+
+
         </div>
     </div>
 </div>
@@ -79,6 +102,9 @@
         placeholder: '输入团队成员id',
         secondaryPlaceholder: '+uid',
     });
+
+
+    // 地图
     map.addEventListener("moveend", function () {
         pos = map.getCenter()
         $('input#map').val(pos.lng + "," + pos.lat);
@@ -86,7 +112,17 @@
     $("input#map").bind("change", function (value) {
         pos = $('input#map').val();
         ans = pos.split(",");
-
         map.centerAndZoom(new BMap.Point(ans[0], ans[1]), 15);
-    }); 
+    });
+    
+
+    $(document).ready(function () {
+        // the "href" attribute of .modal-trigger must specify the modal ID that wants to be triggered
+        $('.modal').modal();
+    });
+
+    function open() {
+        $('#modal1').modal('open');
+    }
+
 </script> {% endblock %}

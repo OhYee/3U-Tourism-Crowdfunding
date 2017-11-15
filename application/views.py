@@ -1,13 +1,15 @@
-from flask import render_template, request, session, redirect, url_for
+from flask import render_template, request, session, redirect, url_for, send_from_directory
 
 from application import app
-import application.projects
+import application.projects as projects
 import application.sql as sql
+import application.projects as projects
+from application.upload import upload_file
 
 
 @app.route('/')
 def index():
-    return render_template("index.html", cols=application.projects.get_test())
+    return render_template("index.html", cols=projects.get_test())
 
 
 @app.route('/add_project/')
@@ -41,7 +43,7 @@ def login():
         passwd = request.form['password']
         if sql.login(username, passwd):
             message = '<span class="green-text">登陆成功</div>'
-            session['username'] = username
+            session['user'] = sql.getUser(username)
             return redirect(url_for('index'))
         else:
             message = '<span class="red-text">登陆失败</div>'
@@ -50,9 +52,22 @@ def login():
 
 @app.route('/logout/')
 def logout():
-    session.pop('id', None)
+    session.pop('user', None)
     return redirect(url_for('index'))
 
+
+@app.route('/upload/', methods=["POST", "GET"])
+def upload():
+    message = ""
+    url = ""
+    if request.method == "POST":
+        status = upload_file(request.files['file'])
+        if status[0] == 1:
+            message = '<span class="red">格式不支持</span>'
+        else:
+            url = "/static/uploads/" + status[1]
+            message = '<span class="green">上传成功</span>' + url
+    return render_template("upload.html", message=message, src=url)
 
 @app.route('/test')
 def test():

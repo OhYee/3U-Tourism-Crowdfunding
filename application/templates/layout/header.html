@@ -1,5 +1,5 @@
 <header>
-    <nav>
+    <nav class="hide-on-med-and-down">
         <div class="nav-wrapper grey lighten-4">
             <a href="/" class="left">
                 <div class="uuu" style="height:64px">
@@ -37,7 +37,7 @@
             </div>
 
             <div class="right" style="padding-right:10px">
-                {% if session['username'] %}
+                {% if session['user'] %}
 
                 <div class="row">
                     <div class="col s4 valign-wrapper">
@@ -47,9 +47,8 @@
                     </div>
 
                     <div class="col s8 ">
-                        <a href="# " class="black-text ">{{ session['username'] }}</a>
-                        <a href="/logout/ " class="blue-text ">退出登陆
-                        </a>
+                        <a href="# " class="black-text ">{{ session['user']['username'] }}</a>
+                        <a href="/logout/ " class="blue-text ">退出登陆</a>
                     </div>
                     {% else %}
                     <a class="uuu-text " href="/register ">注册</a>
@@ -60,4 +59,68 @@
 
 
     </nav>
+
+
+    <nav class="hide-on-large-only">
+        <div class="nav-wrapper">
+            <a href="#" data-activates="slide-out" class="button-collapse left">
+                <i class="material-icons">menu</i>
+            </a>
+            <a href="/" class="center">
+                <div class="uuu" style="height:64px">
+                    <img src="/static/img/logo2.png" height=64px alt="3U旅游众筹">
+                </div>
+            </a>
+
+        </div>
+    </nav>
+    <script>
+        $(".button-collapse").sideNav();
+    </script>
+    <ul id="slide-out" class="side-nav">
+        <li>
+            <div class="userView">
+                {% if session['user'] %}
+                <a href="# " class="black-text ">{{ session['user']['username'] }}</a>
+                <a href="/logout/ " class="blue-text ">退出登陆</a>
+
+                <a href="#!user">
+                    <img class="circle" src="/static/img/qq.png">
+                </a>
+                <a href="#!name">
+                    <span class="white-text name">{{ session['user']['username'] }}</span>
+                </a>
+                {% else %}
+                <a class="uuu-text " href="/register ">注册</a>
+                <a class="uuu-text " href="/login ">登录</a>
+                {% endif %}
+            </div>
+        </li>
+        <li class="nav1">
+            <a class="black-text" href="/">首页</a>
+        </li>
+        <li class="nav2">
+            <a class="black-text" href="/projects.html">更多项目</a>
+        </li>
+        <li class="nav3">
+            <a class="black-text" href="/add_project">发起项目</a>
+        </li>
+        <li class="nav4">
+            <a class="black-text" href="/help.html">我的U圈</a>
+        </li>
+        <li class="nav5">
+            <a class="black-text" href="/about.html">关于我们</a>
+        </li>
+        <li class="nav6">
+            <a class="black-text" href="/help.html">帮助中心</a>
+        </li>
+        <li class="nav7">
+            <a href="javascript:;">
+                <i class="material-icons black-text">search</i>
+            </a>
+        </li>
+    </ul>
+
+
+
 </header>

@@ -18,3 +18,7 @@ def login(username, password):
     if len(db.query_db("select * from user where username='%s' and password='%s';" % (username, password))) == 0:
         return False
     return True
+
+
+def getUser(username):
+    return db.query_db("select * from user where username='%s';" % username, True)

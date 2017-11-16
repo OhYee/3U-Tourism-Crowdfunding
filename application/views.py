@@ -14,6 +14,10 @@ def index():
 
 @app.route('/add_project/')
 def add_project():
+    if 'user' not in session:
+        return redirect(url_for('login'))
+    session['user'] = sql.getUser(session['user']['username'])
+
     return render_template("add_project.html")
 
 
@@ -52,6 +56,8 @@ def login():
 
 @app.route('/logout/')
 def logout():
+    if 'user' not in session:
+        return redirect(url_for('login'))
     session.pop('user', None)
     return redirect(url_for('index'))
 
@@ -71,11 +77,58 @@ def upload():
     return render_template("upload.html", message=message, src=url)
 
 
-@app.route('/config/',methods=["POST","GET"])
+@app.route('/config/', methods=["POST", "GET"])
 def config():
+    if 'user' not in session:
+        return redirect(url_for('login'))
+    session['user'] = sql.getUser(session['user']['username'])
+
+    message = ""
     if request.method == "POST":
-        pass
-    return render_template("config.html")
+        password = request.form['password']
+        avatar = request.form['avatar']
+        phone = request.form['phone']
+        qq = request.form['qq']
+        realname = request.form['realname']
+        info = request.form['info']
+        sql.config_updata(password, avatar, phone, qq, realname, info)
+        session['user'] = sql.getUser(session['user']['username'])
+        message = '<span class="green-text">更新成功</span>'
+
+    return render_template("config.html", message=message)
+
+
+@app.route('/admin/')
+def admin():
+    if 'user' not in session:
+        return redirect(url_for('login'))
+    session['user'] = sql.getUser(session['user']['username'])
+    if session['user']['usergroup'] != '0':
+        return redirect(url_for('index'))
+    return render_template("admin.html", allUsers=sql.getAllUsers(), allProjects=sql.getAllProjects())
+
+
+@app.route('/admin_user_update/', methods=["POST", "GET"])
+def admin_user_update():
+    pass
+
+
+@app.route('/admin_user_del/', methods=["POST", "GET"])
+def admin_user_del():
+    if request.method == 'POST':
+        sql.admin_user_del(request.form['uid'])
+    return redirect(url_for('admin'))
+
+
+@app.route('/admin_project_update/', methods=["POST", "GET"])
+def admin_project_update():
+    pass
+
+
+@app.route('/admin_project_del/', methods=["POST", "GET"])
+def admin_project_del():
+    pass
+
 
 @app.route('/test')
 def test():

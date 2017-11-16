@@ -36,28 +36,36 @@
                 </ul>
             </div>
 
-            <div class="right" style="padding-right:10px">
-                {% if session['user'] %}
-
-                <div class="row">
-                    <div class="col s4 valign-wrapper">
-                        <a href="/config/">
-                            <img class="valign circle" style="margin:10px" height="42px" src="{{ session['user']['avatar'] }}">
+            <div class="right">
+                <ul>
+                    {% if session['user'] %}
+                    <li class="valign-wrapper" style="width:64px">
+                        <a href="/config/" class="valign">
+                            <img class="circle responsive-img valign" style="margin:10px 0 -10px 0" src="{{ session['user']['avatar'] }}">
                         </a>
-                    </div>
-
-                    <div class="col s8 ">
+                    </li>
+                    <li>
                         <a href="/config/" class="black-text ">{{ session['user']['username'] }}</a>
-                        <a href="/logout/ " class="blue-text ">退出登陆</a>
-                    </div>
-                    {% else %}
-                    <a class="uuu-text " href="/register ">注册</a>
-                    <a class="uuu-text " href="/login ">登录</a>
+                    </li>
+                    {% if session['user']['usergroup'] == '0' %}
+                    <li>
+                        <a href="/admin/" class="blue-text">管理员界面</a>
+                    </li>
                     {% endif %}
-                </div>
+                    <li>
+                        <a href="/logout/ " class="blue-text">退出登陆</a>
+                    </li>
             </div>
-
-
+            {% else %}
+            <li>
+                <a class="uuu-text " href="/register ">注册</a>
+            </li>
+            <li>
+                <a class="uuu-text " href="/login ">登录</a>
+            </li>
+            {% endif %}
+            </ul>
+        </div>
     </nav>
 
 

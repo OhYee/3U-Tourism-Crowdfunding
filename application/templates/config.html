@@ -4,16 +4,29 @@
         <div class="row">
             <div class="col l8 offset-l2 s12">
                 <form action="/config/" method="post">
-                    <div class="row input-field">
-                        <i class="material-icons prefix">account_box</i>
-                        <input id="username" type="text" class="validate" disabled value="{{ session['user']['username'] }}">
-                        <label for="username">用户名</label>
+
+                    <div class="row">
+                        <div class="col l12 input-field">
+                            <i class="material-icons prefix">account_balance</i>
+                            <input id="uid" type="text" class="validate" disabled value="{{ session['user']['uid'] }}">
+                            <label for="uid">uid</label>
+                        </div>
                     </div>
 
-                    <div class="row input-field">
-                        <i class="material-icons prefix">vpn_key</i>
-                        <input id="password" name="password" type="password" class="validate">
-                        <label for="password">密码</label>
+                    <div class="row">
+                        <div class="col l12 input-field">
+                            <i class="material-icons prefix">account_box</i>
+                            <input id="username" type="text" class="validate" disabled value="{{ session['user']['username'] }}">
+                            <label for="username">用户名</label>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col l12 input-field">
+                            <i class="material-icons prefix">vpn_key</i>
+                            <input id="password" name="password" type="password" class="validate">
+                            <label for="password">密码</label>
+                        </div>
                     </div>
 
                     <div class="row">
@@ -22,7 +35,7 @@
                             <input id="avatar" name="avatar" type="text" class="validate" value="{{ session['user']['avatar'] }}">
                             <label for="avatar">头像</label>
                             <span class="pink-text text-lighten-3">建议使用正方形图像作为头像，可以使用外部图片，也可以将头像
-                                <a href="/upload/">上传到网站服务器</a>上</span>
+                                <a href="/upload/" target="_blank">上传到网站服务器</a>上</span>
                         </div>
                         <div class="col l4 m12">
                             <img id="avatar_config" class="responsive-img materialboxed" src={{ session[ 'user'][ 'avatar'] }}>
@@ -30,21 +43,40 @@
                     </div>
 
 
-
-                    <div class="row input-field">
-                        <i class="material-icons prefix">phone</i>
-                        <input id="phone" name="phone" type="text" class="validate" value="{{ session['user']['phone'] }}">
-                        <label for="phone">手机号</label>
+                    <div class="row">
+                        <div class="col l12 input-field">
+                            <i class="material-icons prefix">phone</i>
+                            <input id="phone" name="phone" type="text" class="validate" value="{{ session['user']['phone'] }}">
+                            <label for="phone">手机号</label>
+                        </div>
                     </div>
 
-                    <div class="row input-field">
-                            <i class="material-icons prefix">qq</i>
+                    <div class="row">
+                        <div class="col l12 input-field">
+                            <i class="material-icons prefix">insert_emoticon</i>
                             <input id="qq" name="qq" type="text" class="validate" value="{{ session['user']['qq'] }}">
-                            <label for="qq">手机号</label>
+                            <label for="qq">QQ号</label>
                         </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col l12 input-field">
+                            <i class="material-icons prefix">face</i>
+                            <input id="realname" name="realname" type="text" class="validate" value="{{ session['user']['realname'] }}">
+                            <label for="realname">真实姓名</label>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col l12 input-field">
+                            <i class="material-icons prefix">assignment</i>
+                            <input id="info" name="info" type="text" class="validate" value="{{ session['user']['info'] }}">
+                            <label for="info">个人简介</label>
+                        </div>
+                    </div>
 
 
-                    <button class="btn waves-effect waves-light right" type="submit" name="action">登陆
+                    <button class="btn waves-effect waves-light right" type="submit" name="action">保存修改
                         <i class="material-icons right">send</i>
                     </button>
                 </form>

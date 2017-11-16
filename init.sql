@@ -2,7 +2,7 @@ create table user(
     uid         int     not null,   -- 用户id
     username    text    not null,   -- 用户名
     password    text    not null,   -- 密码
-    usergroup   text,               -- 用户组 0管理员 1注册用户 2实名用户
+    usergroup   text    not null,   -- 用户组 0管理员 1注册用户 2实名用户
     qq          text,               -- qq
     phone       text,               -- 手机号
     avatar      text    not null,   -- 头像地址

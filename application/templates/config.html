@@ -1,0 +1,64 @@
+{% extends "layout/layout.html" %} {% block title %} 个人资料设置 {% endblock %} {% block content %}
+<div class="container outer-around">
+    <div class="card-panel hoverable">
+        <div class="row">
+            <div class="col l8 offset-l2 s12">
+                <form action="/config/" method="post">
+                    <div class="row input-field">
+                        <i class="material-icons prefix">account_box</i>
+                        <input id="username" type="text" class="validate" disabled value="{{ session['user']['username'] }}">
+                        <label for="username">用户名</label>
+                    </div>
+
+                    <div class="row input-field">
+                        <i class="material-icons prefix">vpn_key</i>
+                        <input id="password" name="password" type="password" class="validate">
+                        <label for="password">密码</label>
+                    </div>
+
+                    <div class="row">
+                        <div class="col l8 m12 input-field">
+                            <i class="material-icons prefix">camera_front</i>
+                            <input id="avatar" name="avatar" type="text" class="validate" value="{{ session['user']['avatar'] }}">
+                            <label for="avatar">头像</label>
+                            <span class="pink-text text-lighten-3">建议使用正方形图像作为头像，可以使用外部图片，也可以将头像
+                                <a href="/upload/">上传到网站服务器</a>上</span>
+                        </div>
+                        <div class="col l4 m12">
+                            <img id="avatar_config" class="responsive-img materialboxed" src={{ session[ 'user'][ 'avatar'] }}>
+                        </div>
+                    </div>
+
+
+
+                    <div class="row input-field">
+                        <i class="material-icons prefix">phone</i>
+                        <input id="phone" name="phone" type="text" class="validate" value="{{ session['user']['phone'] }}">
+                        <label for="phone">手机号</label>
+                    </div>
+
+                    <div class="row input-field">
+                            <i class="material-icons prefix">qq</i>
+                            <input id="qq" name="qq" type="text" class="validate" value="{{ session['user']['qq'] }}">
+                            <label for="qq">手机号</label>
+                        </div>
+
+
+                    <button class="btn waves-effect waves-light right" type="submit" name="action">登陆
+                        <i class="material-icons right">send</i>
+                    </button>
+                </form>
+                {{ message | safe }}
+            </div>
+        </div>
+    </div>
+
+
+</div>
+
+{% endblock %} {% block script %}
+<script>
+    $("input#avatar").bind("change", function (value) {
+        $("img#avatar_config").attr('src', $('input#avatar').val())
+    });
+</script> {% endblock %}

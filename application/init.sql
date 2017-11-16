@@ -5,8 +5,9 @@ create table user(
     usergroup   text,               -- 用户组 0管理员 1注册用户 2实名用户
     qq          text,               -- qq
     phone       text,               -- 手机号
-    avatar      text,               -- 头像地址
+    avatar      text    not null,   -- 头像地址
     info        text,               -- 个人简介
+    realname    text,               -- 实名
     primary key(uid)
 );
 
@@ -15,6 +16,7 @@ create table project(
     uid         int     not null,   -- 发起人id
     title       text    not null,   -- 标题
     abstract    text    not null,   -- 项目自述
+    img         text    not null,   -- 标题图
     content     text    not null,   -- 我的项目
     why         text    not null,   -- 为何众筹
     map         text    not null,   -- 区位图

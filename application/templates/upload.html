@@ -1,13 +1,35 @@
-<!doctype html>
-<title>Upload new File</title>
-<h1>Upload new File</h1>
-<form action="" method=post enctype=multipart/form-data>
-    <p>
-        <input type=file name=file>
-        <input type=submit value=Upload>
-</form>
+ {% extends "layout/layout.html" %} {% block title %} 上传图片 {% endblock %}{% block content %}
+<div class="container outer-around">
+    <div class="card-panel hoverable">
+        <form action="" method=post enctype=multipart/form-data>
+            <div class="row">
+                <div class="col l10 m12 file-field input-field">
+                    <div class="btn">
+                        <span>文件</span>
+                        <input type="file" name="file">
+                    </div>
+                    <div class="file-path-wrapper">
+                        <input class="file-path validate" type="text">
+                    </div>
+                </div>
 
-{{ message|safe }}
-{% if src %}
-<img src="{{ src }}" />
-{% endif %}
+                <div class="col l2 m12 input-field right">
+                    <button class="btn-large waves-effect waves-light right" type="submit" name="action">上传
+                        <i class="material-icons right">file_upload</i>
+                    </button>
+                </div>
+            </div>
+        </form>
+
+        {{ message | safe }} {% if src %}
+    </div>
+    <div class="card-panel hoverable">
+        <img class="responsive-img materialboxed" src="{{ src }}" /> {% endif %}
+    </div>
+</div>
+
+
+{% endblock %} {% block script %}
+<script>
+
+</script> {% endblock %}

@@ -41,13 +41,13 @@
 
                 <div class="row">
                     <div class="col s4 valign-wrapper">
-                        <a href="#">
-                            <img class="valign circle" height="42px" src="/static/img/qq.png ">
+                        <a href="/config/">
+                            <img class="valign circle" style="margin:10px" height="42px" src="{{ session['user']['avatar'] }}">
                         </a>
                     </div>
 
                     <div class="col s8 ">
-                        <a href="# " class="black-text ">{{ session['user']['username'] }}</a>
+                        <a href="/config/" class="black-text ">{{ session['user']['username'] }}</a>
                         <a href="/logout/ " class="blue-text ">退出登陆</a>
                     </div>
                     {% else %}
@@ -81,15 +81,14 @@
         <li>
             <div class="userView">
                 {% if session['user'] %}
-                <a href="# " class="black-text ">{{ session['user']['username'] }}</a>
-                <a href="/logout/ " class="blue-text ">退出登陆</a>
 
-                <a href="#!user">
-                    <img class="circle" src="/static/img/qq.png">
+                <a href="/config/">
+                    <img class="circle" src="{{ session['user']['avatar'] }}">
                 </a>
-                <a href="#!name">
-                    <span class="white-text name">{{ session['user']['username'] }}</span>
+                <a href="/config/">
+                    <span class="black-text name">{{ session['user']['username'] }}</span>
                 </a>
+                <a href="/logout/ " class="blue-text ">退出登陆</a>
                 {% else %}
                 <a class="uuu-text " href="/register ">注册</a>
                 <a class="uuu-text " href="/login ">登录</a>

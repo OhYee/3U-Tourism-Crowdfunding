@@ -63,11 +63,19 @@ def upload():
     if request.method == "POST":
         status = upload_file(request.files['file'])
         if status[0] == 1:
-            message = '<span class="red">格式不支持</span>'
+            message = '<span class="red-text">格式不支持</span>'
         else:
             url = "/static/uploads/" + status[1]
-            message = '<span class="green">上传成功</span>' + url
+            message = '''<span class="green-text">上传成功</span> <span>地址<a href="{0}">{0}</a></span>
+            <br><span>引用方式: &lt;img class="responsive-img materialboxed" src="{0}" data-caption="标题"></span>'''.format(url)
     return render_template("upload.html", message=message, src=url)
+
+
+@app.route('/config/',methods=["POST","GET"])
+def config():
+    if request.method == "POST":
+        pass
+    return render_template("config.html")
 
 @app.route('/test')
 def test():

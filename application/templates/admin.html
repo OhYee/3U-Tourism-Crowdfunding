@@ -35,7 +35,7 @@
         <div class="row">
             <form action="/admin_user_update/" method="post">
                 <div class="col s1">
-                    <input name="username" type="text" class="validate" value="{{ user['uid'] }}">
+                    <input name="uid" type="text" class="validate" value="{{ user['uid'] }}">
                 </div>
                 <div class="col s1">
                     <img class="circle materialboxed" height=32px style="margin:auto" src="{{ user['avatar'] }}">
@@ -46,7 +46,7 @@
                 <div class="col s2">
                     <input name="password" type="text" class="validate" value="{{ user['password'] }}">
                 </div>
-                <div class="col s2">
+                <div class="col s2 {% if user['usergroup']=='1' and user['realname'] %}pink lighten-4{% endif %}">
                     <select name="usergroup" type="select">
                         <option value="0" {% if user[ 'usergroup']=='0' %}selected{% endif %}>管理员</option>
                         <option value="1" {% if user[ 'usergroup']=='1' %}selected{% endif %}>注册用户</option>

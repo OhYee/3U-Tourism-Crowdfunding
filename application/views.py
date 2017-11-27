@@ -12,6 +12,31 @@ def index():
     return render_template("index.html", cols=projects.get_test())
 
 
+@app.route('/help/')
+def help_page():
+    return render_template("pages/help.html")
+
+
+@app.route('/contact/')
+def contact_page():
+    return render_template("pages/contact.html")
+
+
+@app.route('/agreement/')
+def agreement_page():
+    return render_template("pages/agreement.html")
+
+
+@app.route('/join/')
+def join_page():
+    return render_template("pages/join.html")
+
+
+@app.route('/about/')
+def about_page():
+    return render_template("pages/about.html")
+
+
 @app.route('/add_project/')
 def add_project():
     if 'user' not in session:
@@ -26,6 +51,15 @@ def view_project(pid):
     return render_template("view_project.html", pid=pid)
 
 
+@app.route('/search/')
+def search():
+    key = request.args.get("search")
+    res = False
+    if key != None:
+        res = sql.search(key)
+    return render_template("search.html", res=res)
+
+
 @app.route('/register/', methods=["POST", "GET"])
 def register():
     message = ""
@@ -33,9 +67,9 @@ def register():
         username = request.form['username']
         passwd = request.form['password']
         if sql.register(username, passwd):
-            message = '<span class="green-text">注册成功</div>'
+            message = '<span class="green-text">注册成功,现在<a href="/login">登陆</a></span>'
         else:
-            message = '<span class="red-text">注册失败</div>'
+            message = '<span class="red-text">注册失败</span>'
     return render_template("register.html", message=message)
 
 
@@ -110,7 +144,10 @@ def admin():
 
 @app.route('/admin_user_update/', methods=["POST", "GET"])
 def admin_user_update():
-    pass
+    if request.method == "POST":
+        dic = request.form.copy()
+        sql.admin_user_update(dic)
+    return redirect(url_for('admin'))
 
 
 @app.route('/admin_user_del/', methods=["POST", "GET"])

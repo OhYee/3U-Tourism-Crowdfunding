@@ -42,6 +42,14 @@ def getUser(username):
     return res
 
 
+def getUserByUid(uid):
+    res = db.query_db("select * from user where uid='%s';" % uid, True)
+    for key in res.keys():
+        if res[key] == None:
+            res[key] = ""
+    return res
+
+
 def getAllUsers():
     res = db.query_db("select * from user")
     l = len(res)
@@ -64,13 +72,20 @@ def config_updata(password, avatar, phone, qq, realname, info):
     if password != "":
         db.query_db("update user set password='%s' where uid=='%s';" %
                     (md5(password), uid), True, True)
-    if usergroup == "1" and realname == "":
+    if usergroup != "2" and realname != "":
         db.query_db("update user set realname='%s' where uid=='%s';" %
                     (realname, uid), True, True)
 
 
-def admin_user_update():
-    pass
+def admin_user_update(dic):
+    query = "update user set username='%s',usergroup='%s',realname='%s',phone='%s',qq='%s' where uid=='%s';"
+    args = (dic['username'], dic['usergroup'], dic['realname'],
+            dic['phone'], dic['qq'], dic['uid'])
+    db.query_db(query % args, True, True)
+
+    if dic['password'] != getUserByUid(dic['uid'])['password']:
+        db.query_db("update user set password='%s' where uid=='%s';" %
+                    (md5(dic['password']), dic['uid']), True, True)
 
 
 def admin_user_del(uid):
@@ -83,3 +98,8 @@ def admin_project_update():
 
 def admin_project_del():
     pass
+
+
+def search(key):
+    query = "select * from project where title like '{0}' or abstract like '{0}' or content like '{0}';"
+    return db.query_db(query.format(key))

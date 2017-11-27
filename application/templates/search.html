@@ -1,0 +1,25 @@
+{% extends "layout/layout.html" %} {% block title %} 加入我们 {% endblock %}{% block content %}
+<div class="container outer-around">
+    <div class="card-panel hoverable">
+        
+            <form action="/search/" method="get">
+                <div class="input-field">
+                    <i class="material-icons prefix">account_circle</i>
+                    <input id="search" name="search" type="text" class="validate">
+                    <label for="search">搜索</label>
+                </div>
+
+
+                
+                <button class="btn waves-effect waves-light right" type="submit" name="action">搜索
+                    <i class="material-icons right">search</i>
+                </button>
+            </form>
+    </div>
+</div>
+
+
+{% endblock %} {% block script %}
+<script>
+
+</script> {% endblock %}
